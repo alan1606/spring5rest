@@ -14,7 +14,6 @@ public class Nest {
 
 	
 	@Autowired
-	@Qualifier("myBird")
 	private Animal animal;
 	
 	public void print() {

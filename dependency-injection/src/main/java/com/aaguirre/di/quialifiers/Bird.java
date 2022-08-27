@@ -3,9 +3,11 @@ package com.aaguirre.di.quialifiers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-@Component("myBird")
+@Component
+@Primary
 public class Bird extends Animal implements Flying {
 
 	private static final Logger log = LoggerFactory.getLogger(Bird.class);
