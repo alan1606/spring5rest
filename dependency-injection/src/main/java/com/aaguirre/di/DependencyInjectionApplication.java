@@ -10,6 +10,7 @@ import com.aaguirre.di.profiles.EnvironmentService;
 import com.aaguirre.di.quialifiers.Animal;
 import com.aaguirre.di.quialifiers.Dog;
 import com.aaguirre.di.quialifiers.Nest;
+import com.aaguirre.di.scopes.ExampleScopeService;
 
 
 
@@ -22,8 +23,12 @@ public class DependencyInjectionApplication {
 	
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(DependencyInjectionApplication.class, args);
-		EnvironmentService environmentService = context.getBean(EnvironmentService.class);
-		log.info(environmentService.getEnvironment());
+		ExampleScopeService exampleScopeService = context.getBean(ExampleScopeService.class);
+		ExampleScopeService exampleScopeService1 = context.getBean(ExampleScopeService.class);
+
+		log.info("Are beans equal {}",exampleScopeService.equals(exampleScopeService1));
+		log.info("Are beans == {}",exampleScopeService == exampleScopeService1);
+
 	}
 
 }
