@@ -14,6 +14,7 @@ import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 
 import com.aaguirre.di.autowire.AreaCalculatorService;
+import com.aaguirre.di.lifecycle.LifeCycleBean;
 
 
 
@@ -29,9 +30,8 @@ public class DependencyInjectionApplication {
 	}
 	
 	public static void main(String[] args) {
-		ExpressionParser parser = new SpelExpressionParser();
-		Expression expression = parser.parseExpression("10 + 20");
-		log.info("Result {}", expression.getValue());
+		ConfigurableApplicationContext context = SpringApplication.run(DependencyInjectionApplication.class, args);
+		context.getBean(LifeCycleBean.class);
 	}
 
 }
