@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import com.aaguirre.di.profiles.EnvironmentService;
 import com.aaguirre.di.quialifiers.Animal;
 import com.aaguirre.di.quialifiers.Dog;
 import com.aaguirre.di.quialifiers.Nest;
@@ -21,8 +22,8 @@ public class DependencyInjectionApplication {
 	
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(DependencyInjectionApplication.class, args);
-		Nest nest = context.getBean(Nest.class);
-		nest.print();
+		EnvironmentService environmentService = context.getBean(EnvironmentService.class);
+		log.info(environmentService.getEnvironment());
 	}
 
 }
