@@ -14,6 +14,7 @@ import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 
 import com.aaguirre.di.autowire.AreaCalculatorService;
+import com.aaguirre.di.lifecycle.ExplicitBean;
 import com.aaguirre.di.lifecycle.LifeCycleBean;
 
 
@@ -27,6 +28,11 @@ public class DependencyInjectionApplication {
 	@Bean
 	public String getApplicationName() {
 		return "My app";
+	}
+	
+	@Bean(initMethod = "init", destroyMethod = "destroy")
+	public ExplicitBean getBean() {
+		return new ExplicitBean();
 	}
 	
 	public static void main(String[] args) {
