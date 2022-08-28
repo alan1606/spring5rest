@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
-@Lazy(true) //If lazy only initalize at use
+@Lazy(false) //If lazy only initalize at use
 				//Default singleton is eager, prototype is lazy
 public class LifeCycleBean implements BeanNameAware, InitializingBean, DisposableBean{
 
