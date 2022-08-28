@@ -37,7 +37,7 @@ public class DependencyInjectionApplication {
 	
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(DependencyInjectionApplication.class, args);
-		context.getBean(LifeCycleBean.class);
+		//context.getBean(LifeCycleBean.class);
 	}
 
 }
