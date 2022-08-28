@@ -30,10 +30,10 @@ public class DependencyInjectionApplication {
 		return "My app";
 	}
 	
-	@Bean(initMethod = "init", destroyMethod = "destroy")
+	/*@Bean(initMethod = "init", destroyMethod = "destroy")
 	public ExplicitBean getBean() {
 		return new ExplicitBean();
-	}
+	}*/
 	
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(DependencyInjectionApplication.class, args);
