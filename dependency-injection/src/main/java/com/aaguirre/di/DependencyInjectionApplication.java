@@ -13,6 +13,7 @@ import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 
+import com.aaguirre.di.aop.TargetObject;
 import com.aaguirre.di.autowire.AreaCalculatorService;
 import com.aaguirre.di.lifecycle.ExplicitBean;
 import com.aaguirre.di.lifecycle.LifeCycleBean;
@@ -37,7 +38,8 @@ public class DependencyInjectionApplication {
 	
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(DependencyInjectionApplication.class, args);
-		//context.getBean(LifeCycleBean.class);
+		TargetObject targetObject = context.getBean(TargetObject.class);
+		targetObject.hello("Hello, world");
 	}
 
 }
