@@ -10,20 +10,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-@Order(1)
-public class MyAspect {
+@Order(0)
+public class MyAspect2 {
 
-	
 	private static final Logger log = LoggerFactory.getLogger(MyAspect.class);
 
 	@Before("execution(* com.aaguirre.di.aop.TargetObject.*(..))")	
 	public void before(JoinPoint joinPoint) {
-		log.info("Method name {}", joinPoint.getSignature().getName());
-		log.info("Object type {}", joinPoint.getSignature().getDeclaringType());
-		log.info("Modifiers {}", joinPoint.getSignature().getModifiers());
-		log.info("Args {}", joinPoint.getArgs());
+		log.info("1 Method name {}", joinPoint.getSignature().getName());
+		log.info("1 Object type {}", joinPoint.getSignature().getDeclaringType());
+		log.info("1 Modifiers {}", joinPoint.getSignature().getModifiers());
+		log.info("1 Args {}", joinPoint.getArgs());
 
 
-		log.info("Before advice");
+		log.info("1 Before advice");
 	}
+	
 }
