@@ -15,7 +15,7 @@ public class MyAspect2 {
 
 	private static final Logger log = LoggerFactory.getLogger(MyAspect.class);
 
-	@Before("execution(* com.aaguirre.di.aop.TargetObject.*(..))")	
+	@Before("PointCutExample.targetObjectMethod()")	
 	public void before(JoinPoint joinPoint) {
 		log.info("1 Method name {}", joinPoint.getSignature().getName());
 		log.info("1 Object type {}", joinPoint.getSignature().getDeclaringType());
