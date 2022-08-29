@@ -9,6 +9,7 @@ public class TargetObject {
 	
 	private static final Logger log = LoggerFactory.getLogger(TargetObject.class);
 
+	@MyAnnotation
 	public void hello(String msg) {
 		log.info(msg);
 	}
