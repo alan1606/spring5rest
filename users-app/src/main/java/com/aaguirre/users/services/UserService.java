@@ -2,6 +2,7 @@ package com.aaguirre.users.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -28,7 +29,10 @@ public class UserService {
 		}
 	}
 
-	public List<User> getUsers() {
+	public List<User> getUsers(String startWith) {
+		if(startWith != null) {
+			return users.stream().filter(u -> u.getUsername().startsWith(startWith)).collect(Collectors.toList());
+		}
 		return users;
 	}
 
