@@ -1,68 +1,41 @@
 package com.aaguirre.users.services;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.annotation.PostConstruct;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.aaguirre.users.models.User;
-import com.github.javafaker.Faker;
+import com.aaguirre.users.entities.User;
+import com.aaguirre.users.repositories.UserRepository;
 
 @Service
 public class UserService {
 
 	@Autowired
-	private Faker faker;
+	private UserRepository userRepository;
 	
-	private List<User> users = new ArrayList<>();
+	public List<User> getUsers(){
+		return userRepository.findAll();
+	}
 	
-	@PostConstruct
-	public void init() {
-		for(int i = 0; i < 100; ++i) {
-			users.add(new User(faker.funnyName().name(), faker.name().username(), faker.dragonBall().character()));
-		}
-	}
-
-	public List<User> getUsers(String startWith) {
-		if(startWith != null) {
-			return users.stream().filter(u -> u.getUsername().startsWith(startWith)).collect(Collectors.toList());
-		}
-		return users;
-	}
-
+	public User getUserById(Integer id) {
+		 Optional<User> result = userRepository.findById(id);
+		 if(result.isPresent()) {
+			 return result.get();
+		 }
+		 throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("The user with id %d doesn't exists", id));
+	} 
+	
 	public User getUserByUsername(String username) {
-		return users.stream()
-		.filter(u -> u.getUsername().equals(username))
-		.findAny()
-		.orElseThrow( () -> new ResponseStatusException( HttpStatus.NOT_FOUND, 
-				String.format("User %s not found", username) ) );
+		return userRepository.findByUsername(username)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("The user %s doesn't exists", username)));
 	}
 	
-	public User createUser(User user) {
-		if(users.stream().anyMatch(u -> u.getUsername().equals(user.getUsername()))) {
-			throw new ResponseStatusException(HttpStatus.CONFLICT, String.format("User %s already exists", user.getUsername()));
-		}
-		users.add(user);
-		return user;
+	public User getUserByUsernameAndPassword(String username, String password) {
+		return userRepository.findByUsernameAndPassword(username, password)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("The user %s doesn't exists", username)));
 	}
-	
-	public User updateUser(User user, String username) {
-		User userToBeUpdated = getUserByUsername(username);
-		userToBeUpdated.setNickname(user.getNickname());
-		userToBeUpdated.setPassword(user.getPassword());
-		
-		return userToBeUpdated;
-	}
-
-	public void deleteUser(String username) {
-		User user = getUserByUsername(username);
-		users.remove(user);
-	}
-	
 }

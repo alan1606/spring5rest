@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aaguirre.users.models.User;
-import com.aaguirre.users.services.UserService;
+import com.aaguirre.users.services.UserServiceUsignListService;
 
 @RestController
 @RequestMapping("/v1/users")
 public class UserControllerUsingList {
 
 	@Autowired
-	private UserService service;
+	private UserServiceUsignListService service;
 	
 	@GetMapping
 	public ResponseEntity<List<User>> getUsers(@RequestParam(value = "startWith", required = false) String startWith){
