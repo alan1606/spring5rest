@@ -19,8 +19,8 @@ import com.aaguirre.users.models.User;
 import com.aaguirre.users.services.UserService;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/v1/users")
+public class UserControllerUsingList {
 
 	@Autowired
 	private UserService service;
