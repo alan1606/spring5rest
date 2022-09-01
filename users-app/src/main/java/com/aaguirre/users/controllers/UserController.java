@@ -18,6 +18,9 @@ import com.aaguirre.users.entities.User;
 import com.aaguirre.users.services.UserService;
 
 import io.micrometer.core.annotation.Timed;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/users")
@@ -40,6 +43,11 @@ public class UserController {
 	} 
 	
 	@GetMapping("/{userId}")
+	@ApiOperation(value = "Returns a user for the given user id", response = User.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Record was found"),
+			@ApiResponse(code = 400, message = "Record was not found")
+	})
 	public ResponseEntity<User> getUserById(@PathVariable("userId") Integer userId){
 		return new ResponseEntity<User>(service.getUserById(userId), HttpStatus.OK);
 	}
