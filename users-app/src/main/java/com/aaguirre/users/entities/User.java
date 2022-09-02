@@ -1,5 +1,6 @@
 package com.aaguirre.users.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -13,8 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User {
-
+public class User implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -29,6 +29,8 @@ public class User {
 	@OneToOne
 	@JoinColumn(name = "profile_id", referencedColumnName = "id")
 	private Profile profile;
+
+	private static final long serialVersionUID = 3015281070711904285L;
 
 	public Integer getId() {
 		return id;
