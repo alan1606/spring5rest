@@ -31,7 +31,7 @@ public class Profile {
 	private LocalDate birthDate;
 
 	@OneToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	@JoinColumn(name = "user_id", referencedColumnName = "id", unique = true)
 	private User user;
 	
 	public Integer getId() {
