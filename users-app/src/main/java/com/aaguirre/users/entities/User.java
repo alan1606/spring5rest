@@ -26,9 +26,6 @@ public class User implements Serializable{
 	@Column(name = "password")
 	private String password;
 
-	@OneToOne
-	@JoinColumn(name = "profile_id", referencedColumnName = "id")
-	private Profile profile;
 
 	private static final long serialVersionUID = 3015281070711904285L;
 
@@ -56,13 +53,6 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
-	public Profile getProfile() {
-		return profile;
-	}
-
-	public void setProfile(Profile profile) {
-		this.profile = profile;
-	}
 
 	@Override
 	public int hashCode() {
