@@ -3,6 +3,8 @@ package com.aaguirre.users.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
@@ -18,7 +20,7 @@ public class RoleService {
 	@Autowired
 	private RoleRepository repository;
 	
-	@Secured({"ROLE_ADMIN"})
+	@RolesAllowed({"ROLE_ADMIN"})
 	public List<Role> getRoles(){
 		return repository.findAll();
 	}
