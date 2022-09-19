@@ -18,4 +18,9 @@ public interface UserInRoleRepository extends CrudRepository<UserInRole, Integer
 	
 	@Query("select uir from UserInRole uir where uir.role.id = ?1 and uir.user.id = ?2")
 	public Optional<UserInRole> findByRoleIdAndUserId(Integer roleId, Integer userId);
+
+	@Query("select u from UserInRole u where u.user = ?1")
+	public List<UserInRole> findByUser(User user);
+	
+	
 }
