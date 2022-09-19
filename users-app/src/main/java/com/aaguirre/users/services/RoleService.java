@@ -14,13 +14,13 @@ import com.aaguirre.users.models.MySecurityRule;
 import com.aaguirre.users.repositories.RoleRepository;
 
 @Service
+@MySecurityRule
 public class RoleService {
 
 	@Autowired
 	private RoleRepository repository;
 
 	// @RolesAllowed({"ROLE_ADMIN"})
-	@MySecurityRule
 	public List<Role> getRoles() {
 		return repository.findAll();
 	}
